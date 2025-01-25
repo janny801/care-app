@@ -103,52 +103,58 @@ form button:hover {
 
 
 
-/* opens up on hover instead*/ 
+
+
+
+/* Hover Container Styling */
+.hover-container {
+    display: inline-block; /* Keeps the container inline with other content */
+    position: relative; /* Ensures proper stacking */
+}
+
 /* Hidden by Default */
 #register-form {
     opacity: 0; /* Fully transparent */
     visibility: hidden; /* Completely hidden */
     pointer-events: none; /* Disable interaction when hidden */
-    position: relative;
     transform: translateY(-20px); /* Slide slightly upwards */
     transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease; /* Smooth animation */
+    position: relative;
 }
 
-/* Hover State: Make Visible and Animate */
-.toggle-link:hover + #register-form {
+/* Hover State: Make the Form Visible */
+.hover-container:hover #register-form {
     opacity: 1; /* Fully visible */
     visibility: visible; /* Make visible */
     transform: translateY(0); /* Reset position */
     pointer-events: auto; /* Enable interaction */
 }
 
-/* Link Styling for Hover */
-.toggle-link:hover {
-    color: #ff1493; /* Highlight the link */
-    text-decoration: underline; /* Add emphasis */
-    transition: color 0.3s ease; /* Smoothly change color */
+/* Toggle Link Styling */
+.toggle-link {
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-/* Keyframes for Fade In */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px); /* Slide slightly upwards */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* End in normal position */
-    }
+.toggle-link a {
+    color: #ff1493;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-/* Keyframes for Fade Out */
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-        transform: translateY(0); /* Start at normal position */
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-20px); /* Slide slightly upwards */
-    }
+.toggle-link a:hover {
+    color: #ff69b4; /* Slightly lighter pink on hover */
+}
+
+/* Textbox Styling: Increase Size */
+#register-form input[type="text"],
+#register-form input[type="password"] {
+    width: 100%; /* Make the input field take full width of the form */
+    padding: 10px; /* Add padding for a larger clickable area */
+    font-size: 16px; /* Increase font size for better visibility */
+    border: 1px solid #ddd; /* Add a border for better visibility */
+    border-radius: 5px; /* Slightly rounded corners */
+    box-sizing: border-box; /* Ensure padding doesn’t affect width */
+    margin-bottom: 15px; /* Add space between inputs */
 }

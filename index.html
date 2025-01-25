@@ -24,29 +24,28 @@
             </form>
         </div>
 
-        <!-- Toggle Link -->
-        <div class="toggle-link">
-            <a href="#">Create an Account</a>
-        </div>
+        <!-- Hover Container for Create Account -->
+        <!-- Wrapped link and form in a hover-container for extended hover functionality -->
+        <div class="hover-container">
+            <!-- Toggle Link -->
+            <div class="toggle-link">
+                <a href="#">Create an Account</a>
+            </div>
 
-        <!-- Registration Form -->
-        <!-- Removed the "hidden" class and added appropriate structure for hover functionality -->
-        <div class="form-container" id="register-form">
-            <h2>Create an Account</h2>
-            <form action="/register" method="POST">
-                <label for="register-username">Username:</label>
-                <input type="text" id="register-username" name="username" required>
-                
-                <label for="register-password">Password:</label>
-                <input type="password" id="register-password" name="password" required>
-                
-                <button type="submit">Register</button>
-            </form>
+            <!-- Registration Form -->
+            <div class="form-container" id="register-form">
+                <h2>Create an Account</h2>
+                <form action="/register" method="POST">
+                    <label for="register-username">Username:</label>
+                    <input type="text" id="register-username" name="username" required>
+                    
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" name="password" required>
+                    
+                    <button type="submit">Register</button>
+                </form>
+            </div>
         </div>
     </div>
-
-    <!-- Removed JavaScript -->
-    <!-- No need for JavaScript if we are using the hover functionality -->
-
 </body>
 </html>
