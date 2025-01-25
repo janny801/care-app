@@ -9,6 +9,8 @@
 <body>
     <div class="container">
         <h1>🌸 Welcome to Flower Care App 🌸</h1>
+
+        <!-- Login Form -->
         <div class="form-container">
             <h2>Login</h2>
             <form action="/login" method="POST">
@@ -22,7 +24,14 @@
             </form>
         </div>
 
-        <div class="form-container">
+        <!-- Toggle Link -->
+        <div class="toggle-link">
+            <a href="#">Create an Account</a>
+        </div>
+
+        <!-- Registration Form -->
+        <!-- Removed the "hidden" class and added appropriate structure for hover functionality -->
+        <div class="form-container" id="register-form">
             <h2>Create an Account</h2>
             <form action="/register" method="POST">
                 <label for="register-username">Username:</label>
@@ -35,5 +44,9 @@
             </form>
         </div>
     </div>
+
+    <!-- Removed JavaScript -->
+    <!-- No need for JavaScript if we are using the hover functionality -->
+
 </body>
 </html>

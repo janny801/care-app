@@ -75,3 +75,80 @@ form button:hover {
     font-weight: bold;
     color: #d63384; /* Pink for messages */
 }
+
+
+
+/* visibility control for create account */ 
+.hidden {
+    display: none; /* Initially hide the element */
+}
+
+.toggle-link {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #ff69b4;
+    cursor: pointer;
+}
+
+.toggle-link a {
+    text-decoration: none;
+    color: #ff69b4;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.toggle-link a:hover {
+    color: #ff1493; /* Change color on hover */
+}
+
+
+
+/* opens up on hover instead*/ 
+/* Hidden by Default */
+#register-form {
+    opacity: 0; /* Fully transparent */
+    visibility: hidden; /* Completely hidden */
+    pointer-events: none; /* Disable interaction when hidden */
+    position: relative;
+    transform: translateY(-20px); /* Slide slightly upwards */
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease; /* Smooth animation */
+}
+
+/* Hover State: Make Visible and Animate */
+.toggle-link:hover + #register-form {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make visible */
+    transform: translateY(0); /* Reset position */
+    pointer-events: auto; /* Enable interaction */
+}
+
+/* Link Styling for Hover */
+.toggle-link:hover {
+    color: #ff1493; /* Highlight the link */
+    text-decoration: underline; /* Add emphasis */
+    transition: color 0.3s ease; /* Smoothly change color */
+}
+
+/* Keyframes for Fade In */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px); /* Slide slightly upwards */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End in normal position */
+    }
+}
+
+/* Keyframes for Fade Out */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0); /* Start at normal position */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px); /* Slide slightly upwards */
+    }
+}
