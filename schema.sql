@@ -21,15 +21,18 @@ CREATE TABLE IF NOT EXISTS Flowers (
     FOREIGN KEY (userId) REFERENCES Users(id)
 );
 
--- Insert default flowers for new user setup
--- Assuming you might set a trigger or run this manually when a new user is created
+-- Create a trigger to insert default flowers for each new user
+DELIMITER $$
 
--- To add a row for each flower type for a new user, you would typically run these inserts
--- as part of the user registration process in your application logic
--- Here's how to initialize default flowers for a user with a user ID of 1 as an example:
+CREATE TRIGGER after_user_insert
+AFTER INSERT ON Users
+FOR EACH ROW
+BEGIN
+    INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (NEW.id, 'Rose', FALSE);
+    INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (NEW.id, 'Tulip', TRUE);
+    INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (NEW.id, 'Lotus', TRUE);
+    INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (NEW.id, 'Poppy', TRUE);
+    INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (NEW.id, 'Sunflower', TRUE);
+END$$
 
-INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (1, 'Rose', FALSE); -- Rose is unlocked
-INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (1, 'Tulip', TRUE);  -- Tulip is locked
-INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (1, 'Lotus', TRUE);  -- Lotus is locked
-INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (1, 'Poppy', TRUE);  -- Poppy is locked
-INSERT INTO Flowers (userId, flower_type, is_locked) VALUES (1, 'Sunflower', TRUE); -- Sunflower is locked
+DELIMITER ;

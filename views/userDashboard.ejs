@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, <%= username %>!</h1>
+    <h2>Your Unlocked Flowers:</h2>
+    <ul>
+        <% flowers.forEach(flower => { %>
+            <li><%= flower.flower_type %></li>
+        <% }); %>
+    </ul>
+    <a href="/">Log Out</a>
+</body>
+</html>

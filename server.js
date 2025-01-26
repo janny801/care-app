@@ -23,6 +23,9 @@ db.connect((err) => {
     console.log('Connected to MySQL database.');
 });
 
+// Configure EJS as the view engine
+app.set('view engine', 'ejs');
+
 // Route to serve the home page
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html'); // Serve the index.html file
@@ -63,23 +66,32 @@ app.post('/login', (req, res) => {
             `);
         }
 
-        res.send(`
-            <h1>Login Successful!</h1>
-            <p>Welcome back, ${username}!</p>
-            <a href="/">Go Back</a>
-        `);
+        // Fetch the flowers related to the user
+        const flowerQuery = 'SELECT * FROM Flowers WHERE userId = ? AND is_locked = 0'; // Fetch only unlocked flowers
+        db.query(flowerQuery, [user.id], (err, flowerResults) => {
+            if (err) {
+                console.error('Database error:', err);
+                return res.send(`
+                    <h1>Data Fetch Error</h1>
+                    <p>Could not retrieve flower data. Please try again later.</p>
+                    <a href="/">Go Back</a>
+                `);
+            }
+
+            // Render the userDashboard view with flower data
+            res.render('userDashboard', {
+                username: username,
+                flowers: flowerResults // Pass the flower data to the front end
+            });
+        });
     });
 });
 
-
-
-
+// Register Route
 app.post('/register', async (req, res) => {
     console.log('Received registration request:', req.body);
 
     const { username, password } = req.body;
-    console.log('Registration attempt:', { username, password }); // Log username and password
-
 
     // Check if the username already exists
     const checkUserQuery = 'SELECT * FROM Users WHERE username = ?';
@@ -93,10 +105,7 @@ app.post('/register', async (req, res) => {
             `);
         }
 
-        console.log('Check user query results:', results);
-
         if (results.length > 0) {
-            console.log('Username already exists:', username);
             return res.send(`
                 <h1>Registration Error</h1>
                 <p>Username already exists. Please choose another username.</p>
@@ -106,7 +115,6 @@ app.post('/register', async (req, res) => {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-        console.log('Password hashed successfully.');
 
         // Insert the new user into the database
         const insertUserQuery = 'INSERT INTO Users (username, password) VALUES (?, ?)';
@@ -120,7 +128,6 @@ app.post('/register', async (req, res) => {
                 `);
             }
 
-            console.log('Account created successfully:', username);
             res.send(`
                 <h1>Registration Successful!</h1>
                 <p>Your account has been created successfully.</p>
@@ -129,9 +136,6 @@ app.post('/register', async (req, res) => {
         });
     });
 });
-
-
-
 
 // Start the Server
 app.listen(port, () => {
