@@ -32,6 +32,8 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
+    console.log('Login attempt:', { username, password }); // Log username and password
+
     const query = 'SELECT * FROM Users WHERE username = ?';
     db.query(query, [username], async (err, results) => {
         if (err) {
@@ -76,6 +78,8 @@ app.post('/register', async (req, res) => {
     console.log('Received registration request:', req.body);
 
     const { username, password } = req.body;
+    console.log('Registration attempt:', { username, password }); // Log username and password
+
 
     // Check if the username already exists
     const checkUserQuery = 'SELECT * FROM Users WHERE username = ?';
