@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html'); // Serve the index.html file
 });
 
+
+
+
+
+
+//make it so that password has requirements for input 
+//ex 10 letters long and needs password 
+
+
+
 // Login Route
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
